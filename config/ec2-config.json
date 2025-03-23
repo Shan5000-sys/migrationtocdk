@@ -1,0 +1,5 @@
+{
+    "instanceType": "t2.micro",
+    "keyName": "techhealth-key",
+    "amiId": "ami-0cc3a9edb87c91b53"
+}

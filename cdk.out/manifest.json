@@ -1,0 +1,973 @@
+{
+  "version": "40.0.0",
+  "artifacts": {
+    "MigrationToCdkStack--VpcStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "MigrationToCdkStack--VpcStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "MigrationToCdkStack--VpcStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "MigrationToCdkStack--VpcStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/85e4c35c215237a40ca5b6c567931588eaba06f1e69e921bf49b2e5cc6e0b90b.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "MigrationToCdkStack--VpcStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "MigrationToCdkStack--VpcStack.assets"
+      ],
+      "metadata": {
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "cidr": "*",
+              "maxAzs": "*",
+              "subnetConfiguration": [
+                {
+                  "cidrMask": "*",
+                  "name": "*",
+                  "subnetType": "Public"
+                },
+                {
+                  "cidrMask": "*",
+                  "name": "*",
+                  "subnetType": "Private"
+                },
+                {
+                  "cidrMask": "*",
+                  "name": "*",
+                  "subnetType": "Isolated"
+                }
+              ],
+              "natGateways": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcA7EA0433"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": true,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": true,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {}
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPublicSubnetSubnet1SubnetD24C9899"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPublicSubnetSubnet1RouteTable07D2940E"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPublicSubnetSubnet1RouteTableAssociationCE9EAFE7"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPublicSubnetSubnet1DefaultRoute21A8B6DF"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": true,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": true,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {}
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPublicSubnetSubnet2Subnet4EA6B1C5"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPublicSubnetSubnet2RouteTable0B8D6511"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPublicSubnetSubnet2RouteTableAssociationD901BAA5"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPublicSubnetSubnet2DefaultRoute9050DC3A"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": false,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": false,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPrivateSubnetSubnet1SubnetC11268F9"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPrivateSubnetSubnet1RouteTable6BA85041"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPrivateSubnetSubnet1RouteTableAssociation05C933F1"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": false,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": false,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPrivateSubnetSubnet2Subnet3F067101"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPrivateSubnetSubnet2RouteTableEC125062"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcPrivateSubnetSubnet2RouteTableAssociation4C91F8AD"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": false,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": false,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcIsolatedSubnetSubnet1RouteTable20B5A369"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcIsolatedSubnetSubnet1RouteTableAssociationDF01CE17"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": false,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "availabilityZone": "*",
+              "vpcId": "*",
+              "cidrBlock": "*",
+              "mapPublicIpOnLaunch": false,
+              "ipv6CidrBlock": "*",
+              "assignIpv6AddressOnCreation": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcIsolatedSubnetSubnet2Subnet3F645297"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcIsolatedSubnetSubnet2RouteTable1F5EBEC5"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcIsolatedSubnetSubnet2RouteTableAssociation3C0597F7"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcIGWC266F292"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcVPCGWF6AE2BF6"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/RestrictDefaultSecurityGroupCustomResource": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/TechHealthVpc/RestrictDefaultSecurityGroupCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TechHealthVpcRestrictDefaultSecurityGroupCustomResourceDD04CF42"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/Custom::VpcRestrictDefaultSGCustomResourceProvider": [
+          {
+            "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+            "data": true
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/Exports/Output{\"Ref\":\"TechHealthVpcA7EA0433\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefTechHealthVpcA7EA043348ABCFF0"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/Exports/Output{\"Ref\":\"TechHealthVpcPrivateSubnetSubnet1SubnetC11268F9\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefTechHealthVpcPrivateSubnetSubnet1SubnetC11268F9B6857FCD"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/Exports/Output{\"Ref\":\"TechHealthVpcPublicSubnetSubnet1SubnetD24C9899\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefTechHealthVpcPublicSubnetSubnet1SubnetD24C9899FA4DF458"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/Exports/Output{\"Ref\":\"TechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefTechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD00D5D7F5"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/Exports/Output{\"Ref\":\"TechHealthVpcIsolatedSubnetSubnet2Subnet3F645297\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefTechHealthVpcIsolatedSubnetSubnet2Subnet3F6452972703B662"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/MigrationToCdkStack--VpcStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "MigrationToCdkStack--VpcStack"
+    },
+    "MigrationToCdkStack--BastionStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "MigrationToCdkStack--BastionStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "MigrationToCdkStack--BastionStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "MigrationToCdkStack--BastionStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/b18060961fafe501cc49ec464e01d674898dc37b45e3448f6e4cb8db41af534b.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "MigrationToCdkStack--BastionStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "MigrationToCdkStack--VpcStack",
+        "MigrationToCdkStack--BastionStack.assets"
+      ],
+      "metadata": {
+        "/MigrationToCdkStack--BastionStack/BastionHost": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "vpc": "*",
+              "instanceType": "*",
+              "machineImage": "*",
+              "keyName": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/BastionHost/InstanceSecurityGroup": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "vpc": "*",
+              "allowAllOutbound": true,
+              "allowAllIpv6Outbound": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/BastionHost/InstanceSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BastionHostInstanceSecurityGroupE1AD2D4E"
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/BastionHost/InstanceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              }
+            }
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/BastionHost/InstanceRole/ImportInstanceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/BastionHost/InstanceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BastionHostInstanceRole1113FAAD"
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/BastionHost/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BastionHostInstanceProfile89CC0AF9"
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/BastionHost/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BastionHost04D516A6"
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amikernel510hvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/MigrationToCdkStack--BastionStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "MigrationToCdkStack--BastionStack"
+    },
+    "MigrationToCdkStack--Ec2Stack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "MigrationToCdkStack--Ec2Stack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "MigrationToCdkStack--Ec2Stack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "MigrationToCdkStack--Ec2Stack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4f14f4e76cc93fcc712ebe81ca3ce043823c76b83a26b1868dc67a7f70a638c9.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "MigrationToCdkStack--Ec2Stack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "MigrationToCdkStack--VpcStack",
+        "MigrationToCdkStack--Ec2Stack.assets"
+      ],
+      "metadata": {
+        "/MigrationToCdkStack--Ec2Stack/BastionSecurityGroup": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "vpc": "*",
+              "allowAllOutbound": true
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addIngressRule": [
+                {
+                  "canInlineRule": true,
+                  "connections": "*",
+                  "uniqueId": "*"
+                },
+                {},
+                "*"
+              ]
+            }
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/BastionSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BastionSecurityGroupDAB89EBD"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/BastionHost": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "vpc": "*",
+              "vpcSubnets": {
+                "subnetType": "Public"
+              },
+              "instanceType": "*",
+              "machineImage": "*",
+              "securityGroup": "*",
+              "keyName": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/BastionHost/InstanceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              }
+            }
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/BastionHost/InstanceRole/ImportInstanceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/BastionHost/InstanceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BastionHostInstanceRole1113FAAD"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/BastionHost/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BastionHostInstanceProfile89CC0AF9"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/BastionHost/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BastionHost04D516A6"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amikernel510hvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/Ec2SecurityGroup": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "vpc": "*",
+              "allowAllOutbound": true
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addIngressRule": [
+                "*",
+                {},
+                "*"
+              ]
+            }
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/Ec2SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Ec2SecurityGroup55889913"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/Ec2SecurityGroup/from MigrationToCdkStackEc2StackBastionSecurityGroup908C3F6D:22": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Ec2SecurityGroupfromMigrationToCdkStackEc2StackBastionSecurityGroup908C3F6D227AB6B800"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/ApplicationServer": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "vpc": "*",
+              "vpcSubnets": {
+                "subnetType": "Private"
+              },
+              "instanceType": "*",
+              "machineImage": "*",
+              "securityGroup": "*",
+              "keyName": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/ApplicationServer/InstanceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              }
+            }
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/ApplicationServer/InstanceRole/ImportInstanceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/ApplicationServer/InstanceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApplicationServerInstanceRoleB609E80A"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/ApplicationServer/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApplicationServerInstanceProfile93A2D7FA"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/ApplicationServer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApplicationServerDE129DF0"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/MigrationToCdkStack--Ec2Stack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "MigrationToCdkStack--Ec2Stack"
+    },
+    "MigrationToCdkStack--RdsStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "MigrationToCdkStack--RdsStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "MigrationToCdkStack--RdsStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "MigrationToCdkStack--RdsStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/063c8523e3b074e9d0e19d18751c3a6bfbc07caa90894718ed9926f65292dfb4.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "MigrationToCdkStack--RdsStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "MigrationToCdkStack--VpcStack",
+        "MigrationToCdkStack--RdsStack.assets"
+      ],
+      "metadata": {
+        "/MigrationToCdkStack--RdsStack/RdsInstance": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "engine": {
+                "engineType": "*",
+                "singleUserRotationApplication": "*",
+                "engineVersion": {
+                  "fullVersion": "*",
+                  "majorVersion": "*"
+                },
+                "parameterGroupFamily": "*",
+                "engineFamily": "*",
+                "defaultUsername": "*"
+              },
+              "vpc": "*",
+              "instanceType": "*",
+              "vpcSubnets": {
+                "subnetType": "Isolated"
+              },
+              "allocatedStorage": "*",
+              "publiclyAccessible": false,
+              "backupRetention": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/RdsInstance/SubnetGroup": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "description": "*",
+              "vpc": "*",
+              "vpcSubnets": {
+                "subnetType": "Isolated"
+              },
+              "removalPolicy": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/RdsInstance/SubnetGroup/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RdsInstanceSubnetGroup9495D83D"
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/RdsInstance/SecurityGroup": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "description": "*",
+              "vpc": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/RdsInstance/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RdsInstanceSecurityGroup58E25FA1"
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/RdsInstance/Secret": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "encryptionKey": "*",
+              "secretName": "*",
+              "replicaRegions": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "username": "*",
+              "secretName": "*",
+              "encryptionKey": "*",
+              "excludeCharacters": "*",
+              "replaceOnPasswordCriteriaChanges": "*",
+              "replicaRegions": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/RdsInstance/Secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RdsInstanceSecret86A77E22"
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/RdsInstance/Secret/Attachment": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "secret": "*",
+              "target": "*"
+            }
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/RdsInstance/Secret/Attachment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RdsInstanceSecretAttachment50B5E806"
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/RdsInstance/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RdsInstance1D827D17"
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/MigrationToCdkStack--RdsStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "MigrationToCdkStack--RdsStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "version": "40.0.0",
+  "files": {
+    "b18060961fafe501cc49ec464e01d674898dc37b45e3448f6e4cb8db41af534b": {
+      "source": {
+        "path": "MigrationToCdkStack--BastionStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "b18060961fafe501cc49ec464e01d674898dc37b45e3448f6e4cb8db41af534b.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

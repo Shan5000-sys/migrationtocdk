@@ -1,0 +1,5 @@
+{
+    "instanceClass": "db.t3.micro",
+    "engine": "postgres",
+    "allocatedStorage": 20
+}

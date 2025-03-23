@@ -1,0 +1,969 @@
+{
+ "Resources": {
+  "TechHealthVpcA7EA0433": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/Resource"
+   }
+  },
+  "TechHealthVpcPublicSubnetSubnet1SubnetD24C9899": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.0.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PublicSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/Subnet"
+   }
+  },
+  "TechHealthVpcPublicSubnetSubnet1RouteTable07D2940E": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/RouteTable"
+   }
+  },
+  "TechHealthVpcPublicSubnetSubnet1RouteTableAssociationCE9EAFE7": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TechHealthVpcPublicSubnetSubnet1RouteTable07D2940E"
+    },
+    "SubnetId": {
+     "Ref": "TechHealthVpcPublicSubnetSubnet1SubnetD24C9899"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/RouteTableAssociation"
+   }
+  },
+  "TechHealthVpcPublicSubnetSubnet1DefaultRoute21A8B6DF": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "TechHealthVpcIGWC266F292"
+    },
+    "RouteTableId": {
+     "Ref": "TechHealthVpcPublicSubnetSubnet1RouteTable07D2940E"
+    }
+   },
+   "DependsOn": [
+    "TechHealthVpcVPCGWF6AE2BF6"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/DefaultRoute"
+   }
+  },
+  "TechHealthVpcPublicSubnetSubnet2Subnet4EA6B1C5": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.1.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PublicSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/Subnet"
+   }
+  },
+  "TechHealthVpcPublicSubnetSubnet2RouteTable0B8D6511": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/RouteTable"
+   }
+  },
+  "TechHealthVpcPublicSubnetSubnet2RouteTableAssociationD901BAA5": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TechHealthVpcPublicSubnetSubnet2RouteTable0B8D6511"
+    },
+    "SubnetId": {
+     "Ref": "TechHealthVpcPublicSubnetSubnet2Subnet4EA6B1C5"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/RouteTableAssociation"
+   }
+  },
+  "TechHealthVpcPublicSubnetSubnet2DefaultRoute9050DC3A": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "TechHealthVpcIGWC266F292"
+    },
+    "RouteTableId": {
+     "Ref": "TechHealthVpcPublicSubnetSubnet2RouteTable0B8D6511"
+    }
+   },
+   "DependsOn": [
+    "TechHealthVpcVPCGWF6AE2BF6"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/DefaultRoute"
+   }
+  },
+  "TechHealthVpcPrivateSubnetSubnet1SubnetC11268F9": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.2.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PrivateSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1/Subnet"
+   }
+  },
+  "TechHealthVpcPrivateSubnetSubnet1RouteTable6BA85041": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1/RouteTable"
+   }
+  },
+  "TechHealthVpcPrivateSubnetSubnet1RouteTableAssociation05C933F1": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TechHealthVpcPrivateSubnetSubnet1RouteTable6BA85041"
+    },
+    "SubnetId": {
+     "Ref": "TechHealthVpcPrivateSubnetSubnet1SubnetC11268F9"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1/RouteTableAssociation"
+   }
+  },
+  "TechHealthVpcPrivateSubnetSubnet2Subnet3F067101": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.3.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PrivateSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2/Subnet"
+   }
+  },
+  "TechHealthVpcPrivateSubnetSubnet2RouteTableEC125062": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2/RouteTable"
+   }
+  },
+  "TechHealthVpcPrivateSubnetSubnet2RouteTableAssociation4C91F8AD": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TechHealthVpcPrivateSubnetSubnet2RouteTableEC125062"
+    },
+    "SubnetId": {
+     "Ref": "TechHealthVpcPrivateSubnetSubnet2Subnet3F067101"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2/RouteTableAssociation"
+   }
+  },
+  "TechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.4.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "IsolatedSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1/Subnet"
+   }
+  },
+  "TechHealthVpcIsolatedSubnetSubnet1RouteTable20B5A369": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1/RouteTable"
+   }
+  },
+  "TechHealthVpcIsolatedSubnetSubnet1RouteTableAssociationDF01CE17": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TechHealthVpcIsolatedSubnetSubnet1RouteTable20B5A369"
+    },
+    "SubnetId": {
+     "Ref": "TechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1/RouteTableAssociation"
+   }
+  },
+  "TechHealthVpcIsolatedSubnetSubnet2Subnet3F645297": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.5.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "IsolatedSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2/Subnet"
+   }
+  },
+  "TechHealthVpcIsolatedSubnetSubnet2RouteTable1F5EBEC5": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2/RouteTable"
+   }
+  },
+  "TechHealthVpcIsolatedSubnetSubnet2RouteTableAssociation3C0597F7": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TechHealthVpcIsolatedSubnetSubnet2RouteTable1F5EBEC5"
+    },
+    "SubnetId": {
+     "Ref": "TechHealthVpcIsolatedSubnetSubnet2Subnet3F645297"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2/RouteTableAssociation"
+   }
+  },
+  "TechHealthVpcIGWC266F292": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--VpcStack/TechHealthVpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IGW"
+   }
+  },
+  "TechHealthVpcVPCGWF6AE2BF6": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "TechHealthVpcIGWC266F292"
+    },
+    "VpcId": {
+     "Ref": "TechHealthVpcA7EA0433"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/VPCGW"
+   }
+  },
+  "TechHealthVpcRestrictDefaultSecurityGroupCustomResourceDD04CF42": {
+   "Type": "Custom::VpcRestrictDefaultSG",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E",
+      "Arn"
+     ]
+    },
+    "DefaultSecurityGroupId": {
+     "Fn::GetAtt": [
+      "TechHealthVpcA7EA0433",
+      "DefaultSecurityGroup"
+     ]
+    },
+    "Account": {
+     "Ref": "AWS::AccountId"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/TechHealthVpc/RestrictDefaultSecurityGroupCustomResource/Default"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ],
+    "Policies": [
+     {
+      "PolicyName": "Inline",
+      "PolicyDocument": {
+       "Version": "2012-10-17",
+       "Statement": [
+        {
+         "Effect": "Allow",
+         "Action": [
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:RevokeSecurityGroupIngress",
+          "ec2:RevokeSecurityGroupEgress"
+         ],
+         "Resource": [
+          {
+           "Fn::Join": [
+            "",
+            [
+             "arn:",
+             {
+              "Ref": "AWS::Partition"
+             },
+             ":ec2:",
+             {
+              "Ref": "AWS::Region"
+             },
+             ":",
+             {
+              "Ref": "AWS::AccountId"
+             },
+             ":security-group/",
+             {
+              "Fn::GetAtt": [
+               "TechHealthVpcA7EA0433",
+               "DefaultSecurityGroup"
+              ]
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "7fa1e366ee8a9ded01fc355f704cff92bfd179574e6f9cfee800a3541df1b200.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "__entrypoint__.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Description": "Lambda function for removing all inbound/outbound rules from the VPC default security group"
+   },
+   "DependsOn": [
+    "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.7fa1e366ee8a9ded01fc355f704cff92bfd179574e6f9cfee800a3541df1b200",
+    "aws:asset:property": "Code"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/+1WTU8CMRD9LfRoyipo1HCDPZhNNBAgHCTGdLsDDOy2m34sIuG/290tEDlpogkHTu28zpu+TiYzbQetx7ug1WBr3eTJqpliHGxHhvEVddA78HawneR8uiUcE0U65IpQkrGP7qf2hraxABNKMcO5VcygFKTj/V+YXnk3wTL4xhhv8hIY2DhFTnb05wyFBTPwG0qkZeooCdm9lU7myRlrtqmf4LBwJiaDkNZaRhXTvYAVDFMWY4pm8yrFPnKR8yjx+/L+Xir56pCZvA4S5X3xzKzgC9IxygIlmBf34Yk70xrnInIn3SRRoHVfhAp8Dktp9ExUnI2Q81BRl0xdKOVuKK2BMYtTOOJHrKu15FgFODhTX8V/XmwzluozSO9FxkXGRcZ/y6jaUCQMKNdE/FDzw8xbXeNm+SIDYXZ0CFpaxWHqaFYbmR0AF6sKtQdOzgdKFpiA6jGn1HUzMO6HMEcx31EhEwiW+rpo3wYPwU1jqRGbygqDGQTDev0CEy0aL2QIAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--VpcStack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Outputs": {
+  "ExportsOutputRefTechHealthVpcA7EA043348ABCFF0": {
+   "Value": {
+    "Ref": "TechHealthVpcA7EA0433"
+   },
+   "Export": {
+    "Name": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcA7EA043348ABCFF0"
+   }
+  },
+  "ExportsOutputRefTechHealthVpcPrivateSubnetSubnet1SubnetC11268F9B6857FCD": {
+   "Value": {
+    "Ref": "TechHealthVpcPrivateSubnetSubnet1SubnetC11268F9"
+   },
+   "Export": {
+    "Name": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcPrivateSubnetSubnet1SubnetC11268F9B6857FCD"
+   }
+  },
+  "ExportsOutputRefTechHealthVpcPublicSubnetSubnet1SubnetD24C9899FA4DF458": {
+   "Value": {
+    "Ref": "TechHealthVpcPublicSubnetSubnet1SubnetD24C9899"
+   },
+   "Export": {
+    "Name": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcPublicSubnetSubnet1SubnetD24C9899FA4DF458"
+   }
+  },
+  "ExportsOutputRefTechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD00D5D7F5": {
+   "Value": {
+    "Ref": "TechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD"
+   },
+   "Export": {
+    "Name": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD00D5D7F5"
+   }
+  },
+  "ExportsOutputRefTechHealthVpcIsolatedSubnetSubnet2Subnet3F6452972703B662": {
+   "Value": {
+    "Ref": "TechHealthVpcIsolatedSubnetSubnet2Subnet3F645297"
+   },
+   "Export": {
+    "Name": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcIsolatedSubnetSubnet2Subnet3F6452972703B662"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

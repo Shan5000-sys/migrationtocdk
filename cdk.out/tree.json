@@ -1,0 +1,2109 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "MigrationToCdkStack--VpcStack": {
+        "id": "MigrationToCdkStack--VpcStack",
+        "path": "MigrationToCdkStack--VpcStack",
+        "children": {
+          "TechHealthVpc": {
+            "id": "TechHealthVpc",
+            "path": "MigrationToCdkStack--VpcStack/TechHealthVpc",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
+                  "aws:cdk:cloudformation:props": {
+                    "cidrBlock": "10.0.0.0/16",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "instanceTenancy": "default",
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "MigrationToCdkStack--VpcStack/TechHealthVpc"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnVPC",
+                  "version": "2.184.1"
+                }
+              },
+              "PublicSubnetSubnet1": {
+                "id": "PublicSubnetSubnet1",
+                "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.0.0/24",
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "PublicSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.184.1",
+                      "metadata": []
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TechHealthVpcPublicSubnetSubnet1RouteTable07D2940E"
+                        },
+                        "subnetId": {
+                          "Ref": "TechHealthVpcPublicSubnetSubnet1SubnetD24C9899"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet1/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "TechHealthVpcIGWC266F292"
+                        },
+                        "routeTableId": {
+                          "Ref": "TechHealthVpcPublicSubnetSubnet1RouteTable07D2940E"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PublicSubnet",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": true,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    },
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": true,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    },
+                    {}
+                  ]
+                }
+              },
+              "PublicSubnetSubnet2": {
+                "id": "PublicSubnetSubnet2",
+                "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.1.0/24",
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "PublicSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.184.1",
+                      "metadata": []
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TechHealthVpcPublicSubnetSubnet2RouteTable0B8D6511"
+                        },
+                        "subnetId": {
+                          "Ref": "TechHealthVpcPublicSubnetSubnet2Subnet4EA6B1C5"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PublicSubnetSubnet2/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "TechHealthVpcIGWC266F292"
+                        },
+                        "routeTableId": {
+                          "Ref": "TechHealthVpcPublicSubnetSubnet2RouteTable0B8D6511"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PublicSubnet",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": true,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    },
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": true,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    },
+                    {}
+                  ]
+                }
+              },
+              "PrivateSubnetSubnet1": {
+                "id": "PrivateSubnetSubnet1",
+                "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.2.0/24",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "PrivateSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.184.1",
+                      "metadata": []
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TechHealthVpcPrivateSubnetSubnet1RouteTable6BA85041"
+                        },
+                        "subnetId": {
+                          "Ref": "TechHealthVpcPrivateSubnetSubnet1SubnetC11268F9"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": false,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    },
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": false,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    }
+                  ]
+                }
+              },
+              "PrivateSubnetSubnet2": {
+                "id": "PrivateSubnetSubnet2",
+                "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.3.0/24",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "PrivateSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.184.1",
+                      "metadata": []
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/PrivateSubnetSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TechHealthVpcPrivateSubnetSubnet2RouteTableEC125062"
+                        },
+                        "subnetId": {
+                          "Ref": "TechHealthVpcPrivateSubnetSubnet2Subnet3F067101"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": false,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    },
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": false,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    }
+                  ]
+                }
+              },
+              "IsolatedSubnetSubnet1": {
+                "id": "IsolatedSubnetSubnet1",
+                "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.4.0/24",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "IsolatedSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.184.1",
+                      "metadata": []
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TechHealthVpcIsolatedSubnetSubnet1RouteTable20B5A369"
+                        },
+                        "subnetId": {
+                          "Ref": "TechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": false,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    },
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": false,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    }
+                  ]
+                }
+              },
+              "IsolatedSubnetSubnet2": {
+                "id": "IsolatedSubnetSubnet2",
+                "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.5.0/24",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "IsolatedSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.184.1",
+                      "metadata": []
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "TechHealthVpcA7EA0433"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IsolatedSubnetSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "TechHealthVpcIsolatedSubnetSubnet2RouteTable1F5EBEC5"
+                        },
+                        "subnetId": {
+                          "Ref": "TechHealthVpcIsolatedSubnetSubnet2Subnet3F645297"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": false,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    },
+                    {
+                      "availabilityZone": "*",
+                      "vpcId": "*",
+                      "cidrBlock": "*",
+                      "mapPublicIpOnLaunch": false,
+                      "ipv6CidrBlock": "*",
+                      "assignIpv6AddressOnCreation": "*"
+                    }
+                  ]
+                }
+              },
+              "IGW": {
+                "id": "IGW",
+                "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/IGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "MigrationToCdkStack--VpcStack/TechHealthVpc"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnInternetGateway",
+                  "version": "2.184.1"
+                }
+              },
+              "VPCGW": {
+                "id": "VPCGW",
+                "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/VPCGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+                  "aws:cdk:cloudformation:props": {
+                    "internetGatewayId": {
+                      "Ref": "TechHealthVpcIGWC266F292"
+                    },
+                    "vpcId": {
+                      "Ref": "TechHealthVpcA7EA0433"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
+                  "version": "2.184.1"
+                }
+              },
+              "RestrictDefaultSecurityGroupCustomResource": {
+                "id": "RestrictDefaultSecurityGroupCustomResource",
+                "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/RestrictDefaultSecurityGroupCustomResource",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "MigrationToCdkStack--VpcStack/TechHealthVpc/RestrictDefaultSecurityGroupCustomResource/Default",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CustomResource",
+                  "version": "2.184.1",
+                  "metadata": [
+                    "*"
+                  ]
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.Vpc",
+              "version": "2.184.1",
+              "metadata": [
+                {
+                  "cidr": "*",
+                  "maxAzs": "*",
+                  "subnetConfiguration": [
+                    {
+                      "cidrMask": "*",
+                      "name": "*",
+                      "subnetType": "Public"
+                    },
+                    {
+                      "cidrMask": "*",
+                      "name": "*",
+                      "subnetType": "Private"
+                    },
+                    {
+                      "cidrMask": "*",
+                      "name": "*",
+                      "subnetType": "Isolated"
+                    }
+                  ],
+                  "natGateways": "*"
+                }
+              ]
+            }
+          },
+          "Custom::VpcRestrictDefaultSGCustomResourceProvider": {
+            "id": "Custom::VpcRestrictDefaultSGCustomResourceProvider",
+            "path": "MigrationToCdkStack--VpcStack/Custom::VpcRestrictDefaultSGCustomResourceProvider",
+            "children": {
+              "Staging": {
+                "id": "Staging",
+                "path": "MigrationToCdkStack--VpcStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Staging",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.AssetStaging",
+                  "version": "2.184.1"
+                }
+              },
+              "Role": {
+                "id": "Role",
+                "path": "MigrationToCdkStack--VpcStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.184.1"
+                }
+              },
+              "Handler": {
+                "id": "Handler",
+                "path": "MigrationToCdkStack--VpcStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CustomResourceProviderBase",
+              "version": "2.184.1"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "MigrationToCdkStack--VpcStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "MigrationToCdkStack--VpcStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.184.1"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "MigrationToCdkStack--VpcStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "MigrationToCdkStack--VpcStack/Exports",
+            "children": {
+              "Output{\"Ref\":\"TechHealthVpcA7EA0433\"}": {
+                "id": "Output{\"Ref\":\"TechHealthVpcA7EA0433\"}",
+                "path": "MigrationToCdkStack--VpcStack/Exports/Output{\"Ref\":\"TechHealthVpcA7EA0433\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.184.1"
+                }
+              },
+              "Output{\"Ref\":\"TechHealthVpcPrivateSubnetSubnet1SubnetC11268F9\"}": {
+                "id": "Output{\"Ref\":\"TechHealthVpcPrivateSubnetSubnet1SubnetC11268F9\"}",
+                "path": "MigrationToCdkStack--VpcStack/Exports/Output{\"Ref\":\"TechHealthVpcPrivateSubnetSubnet1SubnetC11268F9\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.184.1"
+                }
+              },
+              "Output{\"Ref\":\"TechHealthVpcPublicSubnetSubnet1SubnetD24C9899\"}": {
+                "id": "Output{\"Ref\":\"TechHealthVpcPublicSubnetSubnet1SubnetD24C9899\"}",
+                "path": "MigrationToCdkStack--VpcStack/Exports/Output{\"Ref\":\"TechHealthVpcPublicSubnetSubnet1SubnetD24C9899\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.184.1"
+                }
+              },
+              "Output{\"Ref\":\"TechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD\"}": {
+                "id": "Output{\"Ref\":\"TechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD\"}",
+                "path": "MigrationToCdkStack--VpcStack/Exports/Output{\"Ref\":\"TechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.184.1"
+                }
+              },
+              "Output{\"Ref\":\"TechHealthVpcIsolatedSubnetSubnet2Subnet3F645297\"}": {
+                "id": "Output{\"Ref\":\"TechHealthVpcIsolatedSubnetSubnet2Subnet3F645297\"}",
+                "path": "MigrationToCdkStack--VpcStack/Exports/Output{\"Ref\":\"TechHealthVpcIsolatedSubnetSubnet2Subnet3F645297\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "MigrationToCdkStack--VpcStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.184.1"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "MigrationToCdkStack--VpcStack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.184.1"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.184.1"
+        }
+      },
+      "MigrationToCdkStack--BastionStack": {
+        "id": "MigrationToCdkStack--BastionStack",
+        "path": "MigrationToCdkStack--BastionStack",
+        "children": {
+          "BastionHost": {
+            "id": "BastionHost",
+            "path": "MigrationToCdkStack--BastionStack/BastionHost",
+            "children": {
+              "InstanceSecurityGroup": {
+                "id": "InstanceSecurityGroup",
+                "path": "MigrationToCdkStack--BastionStack/BastionHost/InstanceSecurityGroup",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "MigrationToCdkStack--BastionStack/BastionHost/InstanceSecurityGroup/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "groupDescription": "MigrationToCdkStack--BastionStack/BastionHost/InstanceSecurityGroup",
+                        "securityGroupEgress": [
+                          {
+                            "cidrIp": "0.0.0.0/0",
+                            "description": "Allow all outbound traffic by default",
+                            "ipProtocol": "-1"
+                          }
+                        ],
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--BastionStack/BastionHost"
+                          }
+                        ],
+                        "vpcId": {
+                          "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcA7EA043348ABCFF0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "vpc": "*",
+                      "allowAllOutbound": true,
+                      "allowAllIpv6Outbound": "*"
+                    }
+                  ]
+                }
+              },
+              "InstanceRole": {
+                "id": "InstanceRole",
+                "path": "MigrationToCdkStack--BastionStack/BastionHost/InstanceRole",
+                "children": {
+                  "ImportInstanceRole": {
+                    "id": "ImportInstanceRole",
+                    "path": "MigrationToCdkStack--BastionStack/BastionHost/InstanceRole/ImportInstanceRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.184.1",
+                      "metadata": [
+                        "*"
+                      ]
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "MigrationToCdkStack--BastionStack/BastionHost/InstanceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "ec2.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--BastionStack/BastionHost"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "assumedBy": {
+                        "principalAccount": "*",
+                        "assumeRoleAction": "*"
+                      }
+                    }
+                  ]
+                }
+              },
+              "InstanceProfile": {
+                "id": "InstanceProfile",
+                "path": "MigrationToCdkStack--BastionStack/BastionHost/InstanceProfile",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                  "aws:cdk:cloudformation:props": {
+                    "roles": [
+                      {
+                        "Ref": "BastionHostInstanceRole1113FAAD"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnInstanceProfile",
+                  "version": "2.184.1"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "MigrationToCdkStack--BastionStack/BastionHost/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                  "aws:cdk:cloudformation:props": {
+                    "availabilityZone": {
+                      "Fn::Select": [
+                        0,
+                        {
+                          "Fn::GetAZs": ""
+                        }
+                      ]
+                    },
+                    "iamInstanceProfile": {
+                      "Ref": "BastionHostInstanceProfile89CC0AF9"
+                    },
+                    "imageId": {
+                      "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amikernel510hvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+                    },
+                    "instanceType": "t2.micro",
+                    "keyName": "bastion",
+                    "securityGroupIds": [
+                      {
+                        "Fn::GetAtt": [
+                          "BastionHostInstanceSecurityGroupE1AD2D4E",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnetId": {
+                      "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcPrivateSubnetSubnet1SubnetC11268F9B6857FCD"
+                    },
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "MigrationToCdkStack--BastionStack/BastionHost"
+                      }
+                    ],
+                    "userData": {
+                      "Fn::Base64": "#!/bin/bash"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnInstance",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.Instance",
+              "version": "2.184.1",
+              "metadata": [
+                {
+                  "vpc": "*",
+                  "instanceType": "*",
+                  "machineImage": "*",
+                  "keyName": "*"
+                }
+              ]
+            }
+          },
+          "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": {
+            "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+            "path": "MigrationToCdkStack--BastionStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.184.1"
+            }
+          },
+          "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118": {
+            "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
+            "path": "MigrationToCdkStack--BastionStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.Resource",
+              "version": "2.184.1",
+              "metadata": []
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "MigrationToCdkStack--BastionStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "MigrationToCdkStack--BastionStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.184.1"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "MigrationToCdkStack--BastionStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "MigrationToCdkStack--BastionStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.184.1"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "MigrationToCdkStack--BastionStack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.184.1"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.184.1"
+        }
+      },
+      "MigrationToCdkStack--Ec2Stack": {
+        "id": "MigrationToCdkStack--Ec2Stack",
+        "path": "MigrationToCdkStack--Ec2Stack",
+        "children": {
+          "BastionSecurityGroup": {
+            "id": "BastionSecurityGroup",
+            "path": "MigrationToCdkStack--Ec2Stack/BastionSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "MigrationToCdkStack--Ec2Stack/BastionSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "MigrationToCdkStack--Ec2Stack/BastionSecurityGroup",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "99.226.228.199/32",
+                        "ipProtocol": "tcp",
+                        "fromPort": 22,
+                        "toPort": 22,
+                        "description": "Allow SSH from your IP to Bastion Host"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcA7EA043348ABCFF0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.184.1",
+              "metadata": [
+                {
+                  "vpc": "*",
+                  "allowAllOutbound": true
+                },
+                {
+                  "addIngressRule": [
+                    {
+                      "canInlineRule": true,
+                      "connections": "*",
+                      "uniqueId": "*"
+                    },
+                    {},
+                    "*"
+                  ]
+                }
+              ]
+            }
+          },
+          "BastionHost": {
+            "id": "BastionHost",
+            "path": "MigrationToCdkStack--Ec2Stack/BastionHost",
+            "children": {
+              "InstanceRole": {
+                "id": "InstanceRole",
+                "path": "MigrationToCdkStack--Ec2Stack/BastionHost/InstanceRole",
+                "children": {
+                  "ImportInstanceRole": {
+                    "id": "ImportInstanceRole",
+                    "path": "MigrationToCdkStack--Ec2Stack/BastionHost/InstanceRole/ImportInstanceRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.184.1",
+                      "metadata": [
+                        "*"
+                      ]
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "MigrationToCdkStack--Ec2Stack/BastionHost/InstanceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "ec2.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--Ec2Stack/BastionHost"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "assumedBy": {
+                        "principalAccount": "*",
+                        "assumeRoleAction": "*"
+                      }
+                    }
+                  ]
+                }
+              },
+              "InstanceProfile": {
+                "id": "InstanceProfile",
+                "path": "MigrationToCdkStack--Ec2Stack/BastionHost/InstanceProfile",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                  "aws:cdk:cloudformation:props": {
+                    "roles": [
+                      {
+                        "Ref": "BastionHostInstanceRole1113FAAD"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnInstanceProfile",
+                  "version": "2.184.1"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "MigrationToCdkStack--Ec2Stack/BastionHost/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                  "aws:cdk:cloudformation:props": {
+                    "availabilityZone": {
+                      "Fn::Select": [
+                        0,
+                        {
+                          "Fn::GetAZs": ""
+                        }
+                      ]
+                    },
+                    "iamInstanceProfile": {
+                      "Ref": "BastionHostInstanceProfile89CC0AF9"
+                    },
+                    "imageId": {
+                      "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amikernel510hvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+                    },
+                    "instanceType": "t2.micro",
+                    "keyName": "techhealth-key",
+                    "securityGroupIds": [
+                      {
+                        "Fn::GetAtt": [
+                          "BastionSecurityGroupDAB89EBD",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnetId": {
+                      "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcPublicSubnetSubnet1SubnetD24C9899FA4DF458"
+                    },
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "MigrationToCdkStack--Ec2Stack/BastionHost"
+                      }
+                    ],
+                    "userData": {
+                      "Fn::Base64": "#!/bin/bash"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnInstance",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.Instance",
+              "version": "2.184.1",
+              "metadata": [
+                {
+                  "vpc": "*",
+                  "vpcSubnets": {
+                    "subnetType": "Public"
+                  },
+                  "instanceType": "*",
+                  "machineImage": "*",
+                  "securityGroup": "*",
+                  "keyName": "*"
+                }
+              ]
+            }
+          },
+          "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": {
+            "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+            "path": "MigrationToCdkStack--Ec2Stack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.184.1"
+            }
+          },
+          "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118": {
+            "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
+            "path": "MigrationToCdkStack--Ec2Stack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-kernel-5.10-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.Resource",
+              "version": "2.184.1",
+              "metadata": []
+            }
+          },
+          "Ec2SecurityGroup": {
+            "id": "Ec2SecurityGroup",
+            "path": "MigrationToCdkStack--Ec2Stack/Ec2SecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "MigrationToCdkStack--Ec2Stack/Ec2SecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "MigrationToCdkStack--Ec2Stack/Ec2SecurityGroup",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcA7EA043348ABCFF0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.184.1"
+                }
+              },
+              "from MigrationToCdkStackEc2StackBastionSecurityGroup908C3F6D:22": {
+                "id": "from MigrationToCdkStackEc2StackBastionSecurityGroup908C3F6D:22",
+                "path": "MigrationToCdkStack--Ec2Stack/Ec2SecurityGroup/from MigrationToCdkStackEc2StackBastionSecurityGroup908C3F6D:22",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                  "aws:cdk:cloudformation:props": {
+                    "description": "Allow SSH from Bastion Host",
+                    "fromPort": 22,
+                    "groupId": {
+                      "Fn::GetAtt": [
+                        "Ec2SecurityGroup55889913",
+                        "GroupId"
+                      ]
+                    },
+                    "ipProtocol": "tcp",
+                    "sourceSecurityGroupId": {
+                      "Fn::GetAtt": [
+                        "BastionSecurityGroupDAB89EBD",
+                        "GroupId"
+                      ]
+                    },
+                    "toPort": 22
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupIngress",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.184.1",
+              "metadata": [
+                {
+                  "vpc": "*",
+                  "allowAllOutbound": true
+                },
+                {
+                  "addIngressRule": [
+                    "*",
+                    {},
+                    "*"
+                  ]
+                }
+              ]
+            }
+          },
+          "ApplicationServer": {
+            "id": "ApplicationServer",
+            "path": "MigrationToCdkStack--Ec2Stack/ApplicationServer",
+            "children": {
+              "InstanceRole": {
+                "id": "InstanceRole",
+                "path": "MigrationToCdkStack--Ec2Stack/ApplicationServer/InstanceRole",
+                "children": {
+                  "ImportInstanceRole": {
+                    "id": "ImportInstanceRole",
+                    "path": "MigrationToCdkStack--Ec2Stack/ApplicationServer/InstanceRole/ImportInstanceRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.184.1",
+                      "metadata": [
+                        "*"
+                      ]
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "MigrationToCdkStack--Ec2Stack/ApplicationServer/InstanceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "ec2.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "MigrationToCdkStack--Ec2Stack/ApplicationServer"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "assumedBy": {
+                        "principalAccount": "*",
+                        "assumeRoleAction": "*"
+                      }
+                    }
+                  ]
+                }
+              },
+              "InstanceProfile": {
+                "id": "InstanceProfile",
+                "path": "MigrationToCdkStack--Ec2Stack/ApplicationServer/InstanceProfile",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                  "aws:cdk:cloudformation:props": {
+                    "roles": [
+                      {
+                        "Ref": "ApplicationServerInstanceRoleB609E80A"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnInstanceProfile",
+                  "version": "2.184.1"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "MigrationToCdkStack--Ec2Stack/ApplicationServer/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                  "aws:cdk:cloudformation:props": {
+                    "availabilityZone": {
+                      "Fn::Select": [
+                        0,
+                        {
+                          "Fn::GetAZs": ""
+                        }
+                      ]
+                    },
+                    "iamInstanceProfile": {
+                      "Ref": "ApplicationServerInstanceProfile93A2D7FA"
+                    },
+                    "imageId": {
+                      "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amikernel510hvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+                    },
+                    "instanceType": "t2.micro",
+                    "keyName": "techhealth-key",
+                    "securityGroupIds": [
+                      {
+                        "Fn::GetAtt": [
+                          "Ec2SecurityGroup55889913",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnetId": {
+                      "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcPrivateSubnetSubnet1SubnetC11268F9B6857FCD"
+                    },
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "MigrationToCdkStack--Ec2Stack/ApplicationServer"
+                      }
+                    ],
+                    "userData": {
+                      "Fn::Base64": "#!/bin/bash"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnInstance",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.Instance",
+              "version": "2.184.1",
+              "metadata": [
+                {
+                  "vpc": "*",
+                  "vpcSubnets": {
+                    "subnetType": "Private"
+                  },
+                  "instanceType": "*",
+                  "machineImage": "*",
+                  "securityGroup": "*",
+                  "keyName": "*"
+                }
+              ]
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "MigrationToCdkStack--Ec2Stack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "MigrationToCdkStack--Ec2Stack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.184.1"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "MigrationToCdkStack--Ec2Stack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "MigrationToCdkStack--Ec2Stack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.184.1"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "MigrationToCdkStack--Ec2Stack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.184.1"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.184.1"
+        }
+      },
+      "MigrationToCdkStack--RdsStack": {
+        "id": "MigrationToCdkStack--RdsStack",
+        "path": "MigrationToCdkStack--RdsStack",
+        "children": {
+          "RdsInstance": {
+            "id": "RdsInstance",
+            "path": "MigrationToCdkStack--RdsStack/RdsInstance",
+            "children": {
+              "SubnetGroup": {
+                "id": "SubnetGroup",
+                "path": "MigrationToCdkStack--RdsStack/RdsInstance/SubnetGroup",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "MigrationToCdkStack--RdsStack/RdsInstance/SubnetGroup/Default",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::RDS::DBSubnetGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "dbSubnetGroupDescription": "Subnet group for RdsInstance database",
+                        "subnetIds": [
+                          {
+                            "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcIsolatedSubnetSubnet1SubnetB65EB4AD00D5D7F5"
+                          },
+                          {
+                            "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcIsolatedSubnetSubnet2Subnet3F6452972703B662"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_rds.CfnDBSubnetGroup",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_rds.SubnetGroup",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "description": "*",
+                      "vpc": "*",
+                      "vpcSubnets": {
+                        "subnetType": "Isolated"
+                      },
+                      "removalPolicy": "*"
+                    }
+                  ]
+                }
+              },
+              "SecurityGroup": {
+                "id": "SecurityGroup",
+                "path": "MigrationToCdkStack--RdsStack/RdsInstance/SecurityGroup",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "MigrationToCdkStack--RdsStack/RdsInstance/SecurityGroup/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "groupDescription": "Security group for RdsInstance database",
+                        "securityGroupEgress": [
+                          {
+                            "cidrIp": "0.0.0.0/0",
+                            "description": "Allow all outbound traffic by default",
+                            "ipProtocol": "-1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcA7EA043348ABCFF0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                      "version": "2.184.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "description": "*",
+                      "vpc": "*"
+                    }
+                  ]
+                }
+              },
+              "Secret": {
+                "id": "Secret",
+                "path": "MigrationToCdkStack--RdsStack/RdsInstance/Secret",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "MigrationToCdkStack--RdsStack/RdsInstance/Secret/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SecretsManager::Secret",
+                      "aws:cdk:cloudformation:props": {
+                        "description": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "Generated by the CDK for stack: ",
+                              {
+                                "Ref": "AWS::StackName"
+                              }
+                            ]
+                          ]
+                        },
+                        "generateSecretString": {
+                          "passwordLength": 30,
+                          "secretStringTemplate": "{\"username\":\"postgres\"}",
+                          "generateStringKey": "password",
+                          "excludeCharacters": " %+~`#$&*()|[]{}:;<>?!'/@\"\\"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_secretsmanager.CfnSecret",
+                      "version": "2.184.1"
+                    }
+                  },
+                  "Attachment": {
+                    "id": "Attachment",
+                    "path": "MigrationToCdkStack--RdsStack/RdsInstance/Secret/Attachment",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "MigrationToCdkStack--RdsStack/RdsInstance/Secret/Attachment/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::SecretsManager::SecretTargetAttachment",
+                          "aws:cdk:cloudformation:props": {
+                            "secretId": {
+                              "Ref": "RdsInstanceSecret86A77E22"
+                            },
+                            "targetId": {
+                              "Ref": "RdsInstance1D827D17"
+                            },
+                            "targetType": "AWS::RDS::DBInstance"
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_secretsmanager.CfnSecretTargetAttachment",
+                          "version": "2.184.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_secretsmanager.SecretTargetAttachment",
+                      "version": "2.184.1",
+                      "metadata": [
+                        {
+                          "secret": "*",
+                          "target": "*"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_rds.DatabaseSecret",
+                  "version": "2.184.1",
+                  "metadata": [
+                    {
+                      "encryptionKey": "*",
+                      "secretName": "*",
+                      "replicaRegions": "*"
+                    },
+                    {
+                      "username": "*",
+                      "secretName": "*",
+                      "encryptionKey": "*",
+                      "excludeCharacters": "*",
+                      "replaceOnPasswordCriteriaChanges": "*",
+                      "replicaRegions": "*"
+                    }
+                  ]
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "MigrationToCdkStack--RdsStack/RdsInstance/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::RDS::DBInstance",
+                  "aws:cdk:cloudformation:props": {
+                    "allocatedStorage": "20",
+                    "backupRetentionPeriod": 7,
+                    "copyTagsToSnapshot": true,
+                    "dbInstanceClass": "db.t3.micro",
+                    "dbSubnetGroupName": {
+                      "Ref": "RdsInstanceSubnetGroup9495D83D"
+                    },
+                    "engine": "postgres",
+                    "engineVersion": "14",
+                    "masterUsername": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "{{resolve:secretsmanager:",
+                          {
+                            "Ref": "RdsInstanceSecret86A77E22"
+                          },
+                          ":SecretString:username::}}"
+                        ]
+                      ]
+                    },
+                    "masterUserPassword": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "{{resolve:secretsmanager:",
+                          {
+                            "Ref": "RdsInstanceSecret86A77E22"
+                          },
+                          ":SecretString:password::}}"
+                        ]
+                      ]
+                    },
+                    "publiclyAccessible": false,
+                    "storageType": "gp2",
+                    "vpcSecurityGroups": [
+                      {
+                        "Fn::GetAtt": [
+                          "RdsInstanceSecurityGroup58E25FA1",
+                          "GroupId"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_rds.CfnDBInstance",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_rds.DatabaseInstance",
+              "version": "2.184.1",
+              "metadata": [
+                {
+                  "engine": {
+                    "engineType": "*",
+                    "singleUserRotationApplication": "*",
+                    "engineVersion": {
+                      "fullVersion": "*",
+                      "majorVersion": "*"
+                    },
+                    "parameterGroupFamily": "*",
+                    "engineFamily": "*",
+                    "defaultUsername": "*"
+                  },
+                  "vpc": "*",
+                  "instanceType": "*",
+                  "vpcSubnets": {
+                    "subnetType": "Isolated"
+                  },
+                  "allocatedStorage": "*",
+                  "publiclyAccessible": false,
+                  "backupRetention": "*"
+                }
+              ]
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "MigrationToCdkStack--RdsStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "MigrationToCdkStack--RdsStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.184.1"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "MigrationToCdkStack--RdsStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.184.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "MigrationToCdkStack--RdsStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.184.1"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "MigrationToCdkStack--RdsStack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.184.1"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.184.1"
+        }
+      },
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.4.2"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.184.1"
+    }
+  }
+}

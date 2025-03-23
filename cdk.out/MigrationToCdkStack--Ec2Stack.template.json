@@ -1,0 +1,561 @@
+{
+ "Resources": {
+  "BastionSecurityGroupDAB89EBD": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "MigrationToCdkStack--Ec2Stack/BastionSecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "99.226.228.199/32",
+      "Description": "Allow SSH from your IP to Bastion Host",
+      "FromPort": 22,
+      "IpProtocol": "tcp",
+      "ToPort": 22
+     }
+    ],
+    "VpcId": {
+     "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcA7EA043348ABCFF0"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--Ec2Stack/BastionSecurityGroup/Resource"
+   }
+  },
+  "BastionHostInstanceRole1113FAAD": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ec2.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--Ec2Stack/BastionHost"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--Ec2Stack/BastionHost/InstanceRole/Resource"
+   }
+  },
+  "BastionHostInstanceProfile89CC0AF9": {
+   "Type": "AWS::IAM::InstanceProfile",
+   "Properties": {
+    "Roles": [
+     {
+      "Ref": "BastionHostInstanceRole1113FAAD"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--Ec2Stack/BastionHost/InstanceProfile"
+   }
+  },
+  "BastionHost04D516A6": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "IamInstanceProfile": {
+     "Ref": "BastionHostInstanceProfile89CC0AF9"
+    },
+    "ImageId": {
+     "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amikernel510hvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+    },
+    "InstanceType": "t2.micro",
+    "KeyName": "techhealth-key",
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "BastionSecurityGroupDAB89EBD",
+       "GroupId"
+      ]
+     }
+    ],
+    "SubnetId": {
+     "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcPublicSubnetSubnet1SubnetD24C9899FA4DF458"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--Ec2Stack/BastionHost"
+     }
+    ],
+    "UserData": {
+     "Fn::Base64": "#!/bin/bash"
+    }
+   },
+   "DependsOn": [
+    "BastionHostInstanceRole1113FAAD"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--Ec2Stack/BastionHost/Resource"
+   }
+  },
+  "Ec2SecurityGroup55889913": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "MigrationToCdkStack--Ec2Stack/Ec2SecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcA7EA043348ABCFF0"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--Ec2Stack/Ec2SecurityGroup/Resource"
+   }
+  },
+  "Ec2SecurityGroupfromMigrationToCdkStackEc2StackBastionSecurityGroup908C3F6D227AB6B800": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Allow SSH from Bastion Host",
+    "FromPort": 22,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "Ec2SecurityGroup55889913",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "BastionSecurityGroupDAB89EBD",
+      "GroupId"
+     ]
+    },
+    "ToPort": 22
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--Ec2Stack/Ec2SecurityGroup/from MigrationToCdkStackEc2StackBastionSecurityGroup908C3F6D:22"
+   }
+  },
+  "ApplicationServerInstanceRoleB609E80A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ec2.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--Ec2Stack/ApplicationServer"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--Ec2Stack/ApplicationServer/InstanceRole/Resource"
+   }
+  },
+  "ApplicationServerInstanceProfile93A2D7FA": {
+   "Type": "AWS::IAM::InstanceProfile",
+   "Properties": {
+    "Roles": [
+     {
+      "Ref": "ApplicationServerInstanceRoleB609E80A"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--Ec2Stack/ApplicationServer/InstanceProfile"
+   }
+  },
+  "ApplicationServerDE129DF0": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "IamInstanceProfile": {
+     "Ref": "ApplicationServerInstanceProfile93A2D7FA"
+    },
+    "ImageId": {
+     "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amikernel510hvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+    },
+    "InstanceType": "t2.micro",
+    "KeyName": "techhealth-key",
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "Ec2SecurityGroup55889913",
+       "GroupId"
+      ]
+     }
+    ],
+    "SubnetId": {
+     "Fn::ImportValue": "MigrationToCdkStack--VpcStack:ExportsOutputRefTechHealthVpcPrivateSubnetSubnet1SubnetC11268F9B6857FCD"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "MigrationToCdkStack--Ec2Stack/ApplicationServer"
+     }
+    ],
+    "UserData": {
+     "Fn::Base64": "#!/bin/bash"
+    }
+   },
+   "DependsOn": [
+    "ApplicationServerInstanceRoleB609E80A"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--Ec2Stack/ApplicationServer/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/61RTU8CMRD9LfRoShU00XBDD2YvShZvhphud8BCt137Adls9r87LbsJhIshntq+zrw3b96UTZ4e2GTED24syt1YyYK1S8/FjiL01YKY4htEsNI3r9aE+rMl+1qQGbkhlHClzGGu1HvwhQm6JDNvA3S0JbwsM72x4FweFJAZtgmuM62khiMSKykRRmsQXhrtes6g5U+ArExPpOoonqvIeZVurB84VvRlrc/c0Ew7z7WAM1t4W4ZCg8eZWuLS9aOpkY4sQqGkwLmI7Dv7j9hXcfGN/rKKbwbInar12A6aN17BYPCPwlbuuYd/VE7bGPxfbKbfYkclr1ibGxVXxJ0LFZTPTRyvtlILWXM1FwJD8EM2qSY2zFOuR7GUzfXdadaIns68sGYtFSB3Ds4EiykmDow6li24Ra8ebEe1KYFt3e1+es8e2d1o66QcW1SVFbD8eP4Co29CMAsDAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "MigrationToCdkStack--Ec2Stack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Parameters": {
+  "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amikernel510hvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter": {
+   "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+   "Default": "/aws/service/ami-amazon-linux-latest/amzn2-ami-kernel-5.10-hvm-x86_64-gp2"
+  },
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
